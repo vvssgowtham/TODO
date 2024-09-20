@@ -1,0 +1,51 @@
+# Todo Application
+
+This project is a simple Todo List Application built using vanilla JavaScript, HTML, and CSS. The app allows users to add tasks, mark tasks as completed, filter tasks based on their completion status, and remove tasks from the list. The tasks are stored locally using `localStorage` to ensure persistence across browser sessions.
+
+## Features
+- Add Tasks: Add new tasks to the list by typing in the input field and pressing `Enter`.
+- Mark as Completed: Check tasks off as completed by using the checkbox.
+- Filter Tasks: View all tasks, only active tasks, or only completed tasks using the filter options.
+- Clear Completed Tasks: Remove all completed tasks at once.
+- Local Storage: Tasks are saved in the browser's `localStorage` and persist across sessions.
+- Toggle All: Mark all tasks as complete or incomplete at once.
+
+
+## Usage Instructions
+
+1. Clone the repository:
+   git clone https://github.com/vvssgowtham/todo-app.git
+
+2. Open `index.html` in your browser:
+   Open the project folder and double-click on `index.html` to launch the application in your default web browser.
+
+## How It Works
+
+1. Task Management:
+   - The tasks are stored in an array called `items`, which is initialized by retrieving data from `localStorage`.
+   - New tasks are created by entering text in the input field and pressing `Enter`, which triggers the `addWithEnter()` function.
+   - Tasks are displayed in a list using the `renderTask()` function, which adds the tasks to the DOM.
+   - Each task can be marked as completed by clicking the checkbox, which updates the task's state and refreshes the view.
+
+2. Local Storage:
+   - Tasks are saved in `localStorage` using the `saveItems()` function, which stores the array of tasks as a JSON string.
+   - When the app is reloaded, tasks are retrieved from `localStorage` to restore the previous state.
+
+3. Filtering:
+   - The application allows users to filter tasks by their state (all, active, completed). This is handled by the `applyFilter()` function, which filters and renders the appropriate tasks based on the selected filter.
+   
+4. Clearing Completed Tasks:
+   - The "Clear completed" button removes all tasks marked as completed by using the `clearCompleted()` function.
+
+5. Mark All as Complete:
+   - The "Mark all as complete" button toggles the completed state of all tasks. If any task is incomplete, all tasks will be marked as complete. If all are complete, it will mark them as incomplete.
+
+## External Contributions
+- The `applyFilter()` and `toggleAll()` functions were refactored with the assistance of Claude AI.
+
+## Dependencies
+- No external libraries are required. The application is built with vanilla JavaScript, HTML, and CSS.
+
+## Author
+- Application created by VVSS Gowtham. 
+- Inspired by the [TodoMVC project](http://todomvc.com/).
