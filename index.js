@@ -29,6 +29,13 @@ const renderTask = (task) => {
   div.appendChild(label);
   div.appendChild(button);
   li.appendChild(div);
+
+  // Add edit input
+  const editInput = document.createElement("input");
+  editInput.className = "edit";
+  editInput.value = task.text;
+  li.appendChild(editInput);
+
   list.appendChild(li);
 
   if (task.completed) {
@@ -54,6 +61,37 @@ const renderTask = (task) => {
     updateClearCompletedButton();
   };
   button.addEventListener("click", buttonHandler);
+
+  // double-click handler for editing
+  const editHandler = () => {
+    li.classList.add("editing");
+    editInput.focus();
+  };
+  label.addEventListener("dblclick", editHandler);
+
+  // Add blur and keypress handlers for edit input
+  const finishEdit = () => {
+    const trimmedValue = editInput.value.trim();
+    if (trimmedValue) {
+      task.text = trimmedValue;
+      label.textContent = trimmedValue;
+      saveItems();
+    } else {
+      items = items.filter((item) => item !== task);
+      li.remove();
+      saveItems();
+      updateTodoCount();
+      updateClearCompletedButton();
+    }
+    li.classList.remove("editing");
+  };
+
+  editInput.addEventListener("blur", finishEdit);
+  editInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      finishEdit();
+    }
+  });
 };
 
 const updateClearCompletedButton = () => {
